@@ -19,7 +19,7 @@
 # Cuantificacion_incertidumbre
 # Propagacion_error
 # Modelos_nls_(Nonlinear_Least_Squares)
-# An?lisis_gr?fico_ggplot2
+# Analisis_grafico_ggplot2
 # //////////////////////////////////////////////////////////////////////////////////
 
 # Scientific notation is suppress
@@ -33,7 +33,7 @@ rm(list = ls())
 setwd("C:/DATOS/R_ITC/R_LABHYD/EXP_ORIFICIO")
 
 # CRAN libraries are loaded
-require(Agreement)
+# require(Agreement)
 require(DescTools)
 require(effects)
 require(ggplot2)
