@@ -29,8 +29,7 @@ options(scipen = 0)
 rm(list = ls())
 
 # Working directory is selected
-# setwd("/media/maikel/Trabajo/R_ITC/R_LABHYD/EXP_ORIFICIO")
-setwd("C:/DATOS/R_ITC/R_LABHYD/EXP_ORIFICIO")
+"/home/shoe/Downloads/LABHYD_Exp_03_Calibracion_Orificio-master"
 
 # CRAN libraries are loaded
 # require(Agreement)
@@ -116,9 +115,8 @@ cor.test(df.base$CD_TEO,df.base$CD_EXP)
 
 # A ggplot2 object is created
 fg01 <- ggplot(aes(x = CD_TEO,y = CD_EXP),data=df.base) +
-  geom_abline(intercept = 0, slope = 1, colour = "gray", size = 1) +
-  geom_point(aes(colour = GROUP, shape = GROUP),
-             size = 5.5, alpha = 0.95) +
+  geom_abline(intercept = 0, slope = 1, colour = "gray", linewidth = 1) +
+  geom_point(colour = "red", size = 5.5, alpha = 0.95) +
   scale_x_continuous(breaks = scales::pretty_breaks(n = 10.0,min.n = 10.0)) +
   scale_y_continuous(breaks = scales::pretty_breaks(n = 10.0,min.n = 10.0)) +
   ggtitle("Comparaci?n entre coeficientes teoricos y experimentales del orificio") +
@@ -158,7 +156,7 @@ df.base.long <- cbind(df.group, df.reynolds, df.base.long)
 
 # A ggplot object is created
 fg02 <- ggplot(data = df.base.long, aes(x = Reynolds, y = value)) +
-  geom_point(aes(colour = variable, shape = GROUP),size = 6.0,alpha = 0.95) +
+  geom_point(aes(colour = variable),size = 6.0,alpha = 0.95) +
   geom_line(aes(colour = variable,group = variable), size = 0.75) +
   scale_y_continuous(breaks = scales::pretty_breaks(n = 20.0,min.n = 20.0)) +
   scale_x_continuous(breaks = scales::pretty_breaks(n = 10.0,min.n = 10.0)) +
@@ -181,7 +179,7 @@ df.base.boxplot <- subset(df.base.long, variable == "CD_EXP" | variable == "CD_T
 fg03 <- ggplot(aes(y = value,x = variable),data=df.base.boxplot) +
   geom_boxplot(aes(colour = variable),
                outlier.colour = '#ff0000',outlier.size = 4) +
-  geom_point(aes(shape = GROUP),size = 5.5,
+  geom_point(aes(shape = variable),size = 5.5,
              position = position_jitter(width = 0.1)) +
   scale_y_continuous(breaks = scales::pretty_breaks(n = 20.0,min.n = 20.0)) +
   ggtitle("Boxplot - CD Teorico + CD experimental") +
@@ -199,7 +197,7 @@ fg03
 # A ggplot2 object is created
 fg04 <- ggplot(aes(x = DELTA_P_m,y = Q_LPS),data=df.base) +
   geom_smooth(size = 0.85, alpha = 0.35, method = lm, fullrange = TRUE) +
-  geom_point(aes(colour = GROUP, shape = GROUP),size = 6.5, alpha = 0.90) +
+  geom_point(size = 6.5, alpha = 0.90) +
   scale_y_continuous(breaks = scales::pretty_breaks(n = 10.0,min.n = 10.0)) +
   scale_x_continuous(breaks = scales::pretty_breaks(n = 10.0,min.n = 10.0)) +
   ggtitle("Modelo de calibracion del orificio (lm)") +
@@ -364,7 +362,7 @@ confint2(mod.nls)
 
 # A ggplot object is created
 fg05 <- ggplot() +
-  geom_point(aes(x = DELTA_P_m,y = Q_LPS, colour = GROUP, shape = GROUP),
+  geom_point(aes(x = DELTA_P_m,y = Q_LPS),
              data=df.output, size = 6.5) +
   geom_line(aes(x = DELTA_P_m,y = fit),
             data=df.output,colour = '#0000ff',size = 0.95,alpha = 0.9) +
