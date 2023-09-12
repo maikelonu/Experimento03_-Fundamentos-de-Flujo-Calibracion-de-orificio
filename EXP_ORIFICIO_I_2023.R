@@ -29,7 +29,7 @@ options(scipen = 0)
 rm(list = ls())
 
 # Working directory is selected
-"/home/shoe/Downloads/LABHYD_Exp_03_Calibracion_Orificio-master"
+setwd("~/Downloads/LABHYD_Exp_03_Calibracion_Orificio-master")
 
 # CRAN libraries are loaded
 # require(Agreement)
